@@ -1,0 +1,37 @@
+<div class="container-fluid py-3">
+  <div class="card">
+    <div class="card-header text-light" style="background: #add8d4;">
+      {{ titulo }}
+    </div>
+    <div class="card-body">
+      <button class="btn btn-info m-1" [routerLink]="['/perfil/form']"> Agregar</button>
+      <div *ngIf="perfiles?.length <= 0" class="alert alert-info">
+        No hay registros en la base de datos!
+      </div>
+      <table class="table table-striped " *ngIf="perfiles?.length > 0">
+        <thead class="text-secondary" style="background: #add8d4;">
+          <tr>
+            <th scope="col">Código perfil</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let perfil of perfiles paginate: { itemsPerPage: 2, currentPage: p }">
+            <td scope="col">{{ perfil.codigoPerfil }}</td>
+            <td> {{ perfil.descripcion }}</td>
+            <td>
+              <a class="btn btn-warning " [routerLink]="['/perfil/form', perfil.codigoPerfil]">editar</a>
+            </td>
+            <td>
+              <a class="btn btn-danger text-light" (click)="delete(perfil)">eliminar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+
+</div>

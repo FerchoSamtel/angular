@@ -1,0 +1,79 @@
+<div class="container py-3">
+  <div class="card">
+    <div class="card-header">
+      {{ titulo }}
+    </div>
+    <div class="card-body">
+      <form #idform="ngForm">
+        <div class="form-group row">
+          <label for="usuario" class="col-sm-2 col-form-label">Usuario <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" [(ngModel)]="usuario.usuario" name="usuario" class="form-control" id="usuario" required
+              #usuarios="ngModel">
+            <div class="alert alert-danger " *ngIf="usuarios.invalid && (usuarios.dirty || usuarios.touched)">
+              <div *ngIf="usuarios.errors.required">
+                Usuario es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="numeroDocumento" class="col-sm-2 col-form-label">Número documento <span
+              class="text-danger">*</span></label>
+          <div class="col-sm-10">
+          <select  style="width: 100%; height: 35px;" name="numeroDocumento" [(ngModel)]="usuario.numeroDocumento" id="numeroDocumento" required
+              #numeroDoc="ngModel">
+              <option value="">Seleccione el número de documento</option>
+              <option *ngFor="let persona of personas" value="persona.numeroDocumento"> {{persona.numeroDocumento}}</option>
+            </select>
+            <div class="alert alert-danger "
+              *ngIf="numeroDoc.invalid && (numeroDoc.dirty || numeroDoc.touched)">
+              <div *ngIf="numeroDoc.errors.required">
+                Número documento es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="perfil" class="col-sm-2 col-form-label">Perfil <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <select  style="width: 100%; height: 35px;" name="perfil" [(ngModel)]="usuario.perfil" id="idperfil" required
+              #perfil="ngModel">
+              <option value="">Seleccione el perfil</option>
+              <option *ngFor="let perfil of perfiles" value="perfil.codigoPerfil"> {{perfil.codigoPerfil}}</option>
+            </select>
+            <div class="alert alert-danger " *ngIf="perfil.invalid && (perfil.dirty || perfil.touched)">
+              <div *ngIf="perfil.errors.required">
+                Perfil es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="habilitado" class="col-sm-2 col-form-label">Habilitado <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" [(ngModel)]="usuario.habilitado" name="habilitado" class="form-control" id="habilitado"
+              required #habilitado="ngModel">
+            <div class="alert alert-danger " *ngIf="habilitado.invalid && (habilitado.dirty || habilitado.touched)">
+              <div *ngIf="habilitado.errors.required">
+                Habilitado es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary" (click)="create()" [disabled]="!idform.form.valid">Crear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+

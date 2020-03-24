@@ -1,0 +1,39 @@
+<div class="container py-3">
+  <div class="card">
+    <div class="card-header">
+      {{ titulo }}
+    </div>
+    <div class="card-body">
+      <form #idform="ngForm">
+
+        <div class="form-group row">
+          <label for="codigoPerfil" class="col-sm-2 col-form-label">Código perfil <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="number" [(ngModel)]="perfil.codigoPerfil"  name="codigoPerfil" class="form-control" id="codigoPerfil" required  #codigoPerfil="ngModel">
+            <div class="alert alert-danger " *ngIf="codigoPerfil.invalid && (codigoPerfil.dirty || codigoPerfil.touched)">
+              <div *ngIf="codigoPerfil.errors.required">
+                Código es requerido
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+          <div class="col-sm-10">
+            <input type="text" [(ngModel)]="perfil.descripcion" name="descripcion" class="form-control" id="descripcion">
+          </div>
+        </div>
+
+        <div class="form-group row " >
+          <div class="col-sm-6">
+            <button class="btn btn-primary" (click)="create()" *ngIf="perfil.codigoPerfil else elseBlock" [disabled]="!idform.form.valid">Aceptar</button>
+            <ng-template #elseBlock>
+              <button class="btn btn-primary" role="button" (click)="update()" [disabled]="!idform.form.valid">Aceptar</button>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
