@@ -1,8 +1,36 @@
-
-<div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Info card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="container">
+  <h1 class="py-5" style="font-size: 5em; text-align: center;" cen> {{ titulo }}</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header" [routerLink]="['/perfil']">Perfil</div>
+        <div class="card-body">
+          <h5 class="card-title">Crear perfil</h5>
+          <p class="card-text">Cree un perfil para empezar el proceso.</p>
+            <button class="btn btn-outline-dark" [routerLink]="['/perfil']">Crear perfil</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+        <div  class="card-header" [routerLink]="['/persona']">Persona</div>
+        <div class="card-body">
+          <h5 class="card-title">Crear persona</h5>
+          <p class="card-text">cre una persona con sus datos personales.</p>
+            <button class="btn btn-outline-dark" [routerLink]="['/persona']">Crear persona</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header" [routerLink]="['/usuario']">Usuario</div>
+        <div class="card-body">
+          <h5 class="card-title">Crear usuario</h5>
+          <p class="card-text">Cree un usuario para administrar su cuenta.</p>
+            <button class="btn btn-outline-dark" [routerLink]="['/usuario']">Crear usuario</button>
+        </div>
+      </div>
+    </div>
   </div>
+
 </div>

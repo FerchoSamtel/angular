@@ -1,12 +1,13 @@
 
-import { PersonaService } from './../persona/persona.service';
-import { UsuarioService } from './usuario.service';
-import { Usuario } from './usuario';
+import { PersonaService } from './../../persona/persona.service';
+import { UsuarioService } from './../usuario.service';
+import { Usuario } from './../usuario';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PerfilService } from './../perfil/perfil.service';
-import { Persona } from './../persona/persona';
-import { Perfil } from './../perfil/perfil';
+import { PerfilService } from './../../perfil/perfil.service';
+import { Persona } from './../../persona/persona';
+import { Perfil } from './../../perfil/perfil';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -24,9 +25,8 @@ export class FormComponent implements OnInit {
   constructor(private service: UsuarioService,
               private personaService: PersonaService,
               private perfilService: PerfilService,
-              private router: Router,
-              private activateRouter: ActivatedRoute) {
-    this.titulo = 'Usuario  Agregar';
+              private router: Router) {
+    this.titulo = 'Agregar usuario';
    }
 
   ngOnInit(): void {
@@ -46,6 +46,7 @@ export class FormComponent implements OnInit {
     this.service.create(this.usuario).subscribe(
       json => {
         this.router.navigate(['/usuario']);
+        swal.fire('Nuevo usuario', `Usuario ${this.usuario.usuario} creado con éxito`, 'success');
     });
   }
 

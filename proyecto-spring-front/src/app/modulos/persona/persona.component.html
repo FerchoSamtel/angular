@@ -8,6 +8,16 @@
       <div *ngIf="personas?.length <= 0" class="alert alert-info">
         No hay registros en la base de datos!
       </div>
+
+      <form (ngSubmit)="upload()" >
+        <label >nombre archivo</label>
+        <input type="text" [(ngModel)]="archivo.nombre" name="file">
+
+        <input type="file"  (change)="seleccionarArchivo($event)">
+        <button>Subir archivo</button>
+      </form>
+
+
       <table class="table table-striped " *ngIf="personas?.length > 0" style="width: 100%;">
         <thead class="text-secondary" style="background: #add8d4;">
           <tr>

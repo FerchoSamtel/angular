@@ -4,9 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-   {path: '', component: InicioComponent},
-   {path: '', redirectTo: 'home',  pathMatch: 'full'},
-   {path: 'inicio', component: InicioComponent},
+  { path: '', component: InicioComponent },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+  { path: 'inicio', component: InicioComponent },
 ];
 
 @NgModule({

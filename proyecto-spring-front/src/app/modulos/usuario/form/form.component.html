@@ -18,18 +18,33 @@
           </div>
         </div>
 
+        <!-- <div class="form-group row">
+          <label for="numeroDocumento" class="col-sm-2 col-form-label">Número documento <span
+              class="text-danger">*</span></label>
+          <div class="col-sm-10">
+          <select  style="width: 100%; height: 35px;" name="numeroDocumento" [(ngModel)]="usuario.numeroDocumento" class="form-control" id="numeroDocumento" required
+           #numeroDocumento="ngModel">
+              <option value="">Seleccione el número de documento</option>
+              <option *ngFor="let persona of personas" value="personas.numeroDocumento"> {{ persona.numeroDocumento }}</option>
+            </select>
+            <div class="alert alert-danger "
+              *ngIf="numeroDocumento.invalid && (numeroDocumento.dirty || numeroDocumento.touched)">
+              <div *ngIf="numeroDocumento.errors.required">
+                Número documento es requerido!
+              </div>
+            </div>
+          </div>
+        </div> -->
+
         <div class="form-group row">
           <label for="numeroDocumento" class="col-sm-2 col-form-label">Número documento <span
               class="text-danger">*</span></label>
           <div class="col-sm-10">
-          <select  style="width: 100%; height: 35px;" name="numeroDocumento" [(ngModel)]="usuario.numeroDocumento" id="numeroDocumento" required
-              #numeroDoc="ngModel">
-              <option value="">Seleccione el número de documento</option>
-              <option *ngFor="let persona of personas" value="persona.numeroDocumento"> {{persona.numeroDocumento}}</option>
-            </select>
+            <input type="text" [(ngModel)]="usuario.numeroDocumento" name="numeroDocumento" class="form-control"
+              id="numeroDocumento" required #numeroDocumento="ngModel">
             <div class="alert alert-danger "
-              *ngIf="numeroDoc.invalid && (numeroDoc.dirty || numeroDoc.touched)">
-              <div *ngIf="numeroDoc.errors.required">
+              *ngIf="numeroDocumento.invalid && (numeroDocumento.dirty || numeroDocumento.touched)">
+              <div *ngIf="numeroDocumento.errors.required">
                 Número documento es requerido!
               </div>
             </div>
@@ -39,11 +54,7 @@
         <div class="form-group row">
           <label for="perfil" class="col-sm-2 col-form-label">Perfil <span class="text-danger">*</span></label>
           <div class="col-sm-10">
-            <select  style="width: 100%; height: 35px;" name="perfil" [(ngModel)]="usuario.perfil" id="idperfil" required
-              #perfil="ngModel">
-              <option value="">Seleccione el perfil</option>
-              <option *ngFor="let perfil of perfiles" value="perfil.codigoPerfil"> {{perfil.codigoPerfil}}</option>
-            </select>
+            <input type="text" [(ngModel)]="usuario.perfil" name="perfil" class="form-control" id="perfil" required #perfil="ngModel">
             <div class="alert alert-danger " *ngIf="perfil.invalid && (perfil.dirty || perfil.touched)">
               <div *ngIf="perfil.errors.required">
                 Perfil es requerido!
@@ -51,6 +62,22 @@
             </div>
           </div>
         </div>
+
+        <!-- <div class="form-group row">
+          <label for="perfil" class="col-sm-2 col-form-label">Perfil <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <select  style="width: 100%; height: 35px;" name="perfil" [(ngModel)]="usuario.perfil" id="idperfil" required
+              #perfil="ngModel">
+              <option value="">Seleccione el perfil</option>
+              <option *ngFor="let perfil of perfiles" value="perfil.codigoPerfil"> {{ perfil.codigoPerfil }}</option>
+            </select>
+            <div class="alert alert-danger " *ngIf="perfil.invalid && (perfil.dirty || perfil.touched)">
+              <div *ngIf="perfil.errors.required">
+                Perfil es requerido!
+              </div>
+            </div>
+          </div>
+        </div> -->
         <div class="form-group row">
           <label for="habilitado" class="col-sm-2 col-form-label">Habilitado <span class="text-danger">*</span></label>
           <div class="col-sm-10">

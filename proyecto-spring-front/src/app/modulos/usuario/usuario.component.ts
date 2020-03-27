@@ -4,6 +4,7 @@ import { Usuario } from './usuario';
 import { Router } from '@angular/router';
 import * as jsPDF from 'jspdf';
 import * as $ from 'jquery';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuario',
@@ -30,12 +31,46 @@ export class UsuarioComponent implements OnInit {
     doc.save('lista de usuarios ');
   }
   delete(usuario: Usuario): void {
-    this.service.delete(usuario.usuario).subscribe(
-      response => {
-        this.router.navigate(['/usuario']);
-        this.usuarios = this.usuarios.filter(per => per !== usuario);
+    const swalWithBootstrapButtons = swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: '¿Está seguro?',
+      text: `¿Seguro que desea eliminar al uusario ${usuario.usuario}?`,
+      icon: 'warning',
+      buttonsStyling: false,
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.service.delete(usuario.usuario).subscribe(
+          response => {
+            this.router.navigate(['/usuario']);
+            this.usuarios = this.usuarios.filter(per => per !== usuario);
+            swalWithBootstrapButtons.fire(
+              'Usuario Eliminado!',
+              `Usuario ${usuario.usuario} eliminado con éxito.`,
+              'success'
+            );
+          }
+        );
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'El usuario no se ha podido eliminar',
+          'error'
+        );
       }
-    );
+    });
   }
 
 }

@@ -1,7 +1,8 @@
-import { PersonaService } from './persona.service';
-import { Persona } from './persona';
+import { PersonaService } from './../persona.service';
+import { Persona } from './../persona';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -18,30 +19,13 @@ export class FormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.cargarPersona();
-  }
-
-  cargarPersona(): void {
-    this.activateRouter.params.subscribe( param => {
-      const numeroDocumento = param.numeroDocumento;
-      if (numeroDocumento) {
-        this.service.getPerfiles(numeroDocumento).subscribe((persona) => this.persona = persona);
-      }
-    });
   }
 
   create(): void {
     this.service.create(this.persona).subscribe(
       json => {
         this.router.navigate(['/persona']);
+        swal.fire('Nueva persona', `persona ${this.persona.nombre} creada con éxito`, 'success');
     });
-  }
-
-  update(): void {
-    this.service.update(this.persona).subscribe(
-      json => {
-        this.router.navigate(['/persona']);
-      }
-    );
   }
 }

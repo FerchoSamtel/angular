@@ -1,0 +1,124 @@
+<div class="container py-3">
+  <div class="card">
+    <div class="card-header">
+      {{ titulo }}
+    </div>
+    <div class="card-body">
+      <form #idform="ngForm">
+        <div class="form-group row">
+          <label for="numeroDocumento" class="col-sm-2 col-form-label">Número documento <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" [(ngModel)]="persona.numeroDocumento" name="numeroDocumento" class="form-control"
+              id="numeroDocumento" required #numeroDocumento="ngModel">
+            <div class="alert alert-danger "
+              *ngIf="numeroDocumento.invalid && (numeroDocumento.dirty || numeroDocumento.touched)">
+              <div *ngIf="numeroDocumento.errors.required">
+                Número documento es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="tipoDocumento" class="col-sm-2 col-form-label">Tipo documento<span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" [(ngModel)]="persona.tipoDocumento" name="tipoDocumento" class="form-control"
+              id="descripcion" required #tipoDocumento="ngModel">
+            <div class="alert alert-danger "
+              *ngIf="tipoDocumento.invalid && (tipoDocumento.dirty || tipoDocumento.touched)">
+              <div *ngIf="tipoDocumento.errors.required">
+                Tipo documento es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="nombre" class="col-sm-2 col-form-label">Nombre <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" [(ngModel)]="persona.nombre" name="nombre" class="form-control" id="codigoPerfil"
+              required #nombre="ngModel">
+            <div class="alert alert-danger " *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                Nombre es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="edad" class="col-sm-2 col-form-label">Edad <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="number" [(ngModel)]="persona.edad" name="edad" class="form-control" id="descripcion" required
+            number #edad="ngModel">
+            <div class="alert alert-danger " *ngIf="edad.invalid && (edad.dirty || edad.touched)">
+              <div *ngIf="edad.errors.required">
+                <i class="fas fa-expand-wide    "></i> Edad es requerida!
+              </div>
+              <div *ngIf="edad.errors.number">
+                <i class="fas fa-expand-wide    "></i>Ingrese solo numeros!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="email" class="col-sm-2 col-form-label">Email <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" [(ngModel)]="persona.email" name="email" class="form-control" id="codigoPerfil" required  email
+              #email="ngModel">
+            <div class="alert alert-danger "
+              *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="email.errors.required">
+                Email es requerido!
+              </div>
+              <div *ngIf="email.errors.email">
+                Email invalido
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="salario" class="col-sm-2 col-form-label">Salario <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="number" [(ngModel)]="persona.salario" name="salario" class="form-control" id="descripcion"
+              required #salario="ngModel">
+            <div class="alert alert-danger "
+              *ngIf="salario.invalid && (salario.dirty || salario.touched)">
+              <div *ngIf="salario.errors.required">
+                Salario es requerido!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="fechaNacimiento" class="col-sm-2 col-form-label">Fecha nacimiento <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="date" [(ngModel)]="persona.fechaNacimiento" name="fechaNacimiento" class="form-control" required #fechaNacimiento="ngModel"
+              id="codigoPerfil">
+            <div class="alert alert-danger "
+              *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched)">
+              <div *ngIf="fechaNacimiento.errors.required">
+                Fecha nacimiento es requerida!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="descripcion" class="col-sm-2 col-form-label">Descripción </label>
+          <div class="col-sm-10">
+            <textarea type="text" [(ngModel)]="persona.descripcion" name="descripcion" class="form-control"
+              id="descripcion"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary" (click)="create()" [disabled]="!idform.form.valid">Crear </button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

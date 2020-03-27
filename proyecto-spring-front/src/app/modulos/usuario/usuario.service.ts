@@ -5,7 +5,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-// import { Perfil }
+import { formatDate, registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,16 @@ export class UsuarioService {
     return this.http.get(this.urlEndPoint).pipe(
       map(response => {
         const usuario = response as Usuario[];
-        return usuario;
+        // tslint:disable-next-line: no-shadowed-variable
+        return usuario.map(usuario => {
+          registerLocaleData(localeES, 'es');
+          usuario.fechaCreacion = formatDate(usuario.fechaCreacion, 'EEEE dd, MMMM yyyy', 'es');
+          if (usuario.fechaModificacion) {
+            usuario.fechaModificacion = formatDate(usuario.fechaModificacion, 'EEEE dd, MMMM yyyy', 'es');
+            return usuario;
+          }
+          return usuario;
+        });
       })
     );
   }
